@@ -1,8 +1,10 @@
 #*****************************************************************
 # File:   Makefile
-# Author: PSCD-Unizar
-# Date:   octubre 2016
-# Coms:   Ejecutar "make" para compilar (o "make -f Makefile")
+# Author: Andrés Gavín Murillo 716358
+# Author: Andrew Mackay
+# Date:   Marzo 2019
+# Coms:   Algoritmia básica - Práctica 1
+#         Ejecutar "make" para compilar (o "make -f Makefile")
 #         Ejecutar "make clean" para limpiar (borrar lo que genere)
 #*****************************************************************
 
@@ -13,27 +15,31 @@ CC = g++         # compilador
 #---------------------------------------------------------
 # compilación y enlazado ("linkado")
 CPPFLAGS=-I. -O2 -std=c++11 -fmax-errors=1 # opciones compilación
-LDFLAGS=-pthread                           # opciones de "linkado"
 #---------------------------------------------------------
 # vars
-EJEC = ejercicio_2-3
-SEM = Semaphore
+EJEC = huf
+MAIN = main
+MON = heap
+ARB = arbol
 
 all: ${EJEC}
 #---------------------------------------------------------
 # "linkar"
-${EJEC}: ${EJEC}.o ${SEM}.o
-	${CC} ${EJEC}.o ${SEM}.o -o ${EJEC} ${CPPFLAGS} ${LDFLAGS}
+${EJEC}: ${MAIN}.o ${MON}.o ${ARB}.o
+	${CC} ${MAIN}.o ${MON}.o ${ARB}.o -o ${EJEC} ${CPPFLAGS}
 
 #---------------------------------------------------------
 # compilar
-${EJEC}.o: ${EJEC}.cpp ${SEM}.hpp ${SEM}.cpp
-	${CC} -c ${EJEC}.cpp ${CPPFLAGS}
+${MAIN}.o: ${MAIN}.cpp ${MON}.hpp ${MON}.cpp ${ARB}.hpp ${ARB}.cpp
+	${CC} -c ${MAIN}.cpp ${CPPFLAGS}
 
-${SEM}.o: ${SEM}.hpp ${SEM}.cpp
-	${CC} -c ${SEM}.cpp ${CPPFLAGS}
+${MON}.o: ${MON}.hpp ${MON}.cpp
+	${CC} -c ${MON}.cpp ${CPPFLAGS}
+
+${ARB}.o: ${ARB}.hpp ${ARB}.cpp
+	${CC} -c ${ARB}.cpp ${CPPFLAGS}
 
 #---------------------------------------------------------
 # Cuidado con lo que se pone aquí, que se borra sin preguntar
 clean:
-	$(RM) ${SEM}.o ${EJEC}.o ${EJEC}
+	$(RM) ${MON}.o ${ARB}.o ${MAIN}.o ${EJEC}
