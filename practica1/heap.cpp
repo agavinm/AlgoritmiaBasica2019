@@ -45,7 +45,7 @@ Arbol* Heap::primero() {
                 posHijo++; // Hijo derecho
             }
 
-            if (this->v[pos] < this->v[posHijo]) { // Intercambiar mientras el hijo sea mayor que el padre
+            if (this->v[pos]->frecuencia() < this->v[posHijo]->frecuencia()) { // Intercambiar mientras el hijo sea mayor que el padre
                 aux = this->v[posHijo];
                 this->v[posHijo] = this->v[pos];
                 this->v[pos] = aux;

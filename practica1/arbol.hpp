@@ -24,11 +24,6 @@ public:
     Arbol(const unsigned char frecuencia, const unsigned char byte) : // Constructor del árbol hoja
             frec(frecuencia), byte(byte), hijoI(nullptr), hijoD(nullptr) {}
 
-    ~Arbol() {
-        delete hijoI;
-        delete hijoD;
-    }
-
     const unsigned char frecuencia();
 };
 
