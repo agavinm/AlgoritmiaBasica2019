@@ -1,0 +1,6 @@
+# Ficheros generados
+*.o
+
+# Carpeta de configuracion del editor Visual Studio Code
+.vscode
+
