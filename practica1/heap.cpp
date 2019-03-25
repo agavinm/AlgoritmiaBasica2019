@@ -13,8 +13,8 @@ void Heap::insertar(Arbol &ar) {
     unsigned long pos = this->v.size() - 1, posPadre = (pos+1) / 2 - 1;
     bool continuar = pos != 0;
 
-    while (continuar) { // Intercambiar mientras el hijo sea mayor que el padre
-        if (this->v[pos]->frecuencia() > this->v[posPadre]->frecuencia()) {
+    while (continuar) { // Intercambiar mientras el hijo sea menor que el padre
+        if (this->v[pos]->frecuencia() < this->v[posPadre]->frecuencia()) {
             this->v[pos] = this->v[posPadre];
             this->v[posPadre] = &ar;
             pos = posPadre;
@@ -41,11 +41,11 @@ Arbol* Heap::primero() {
         Arbol *aux;
 
         while (continuar) {
-            if (posHijo+1 != this->v.size() && this->v[posHijo]->frecuencia() < this->v[posHijo+1]->frecuencia()) {
+            if (posHijo+1 != this->v.size() && this->v[posHijo]->frecuencia() > this->v[posHijo+1]->frecuencia()) {
                 posHijo++; // Hijo derecho
             }
 
-            if (this->v[pos]->frecuencia() < this->v[posHijo]->frecuencia()) { // Intercambiar mientras el hijo sea mayor que el padre
+            if (this->v[pos]->frecuencia() > this->v[posHijo]->frecuencia()) { // Intercambiar mientras el hijo sea mayor que el padre
                 aux = this->v[posHijo];
                 this->v[posHijo] = this->v[pos];
                 this->v[pos] = aux;

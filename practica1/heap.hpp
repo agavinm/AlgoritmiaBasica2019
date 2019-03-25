@@ -13,7 +13,7 @@
 #include "arbol.hpp"
 
 
-class Heap { // Heap de máximos
+class Heap { // Heap de mínimos
 private:
     std::vector<Arbol*> v; // vector dinámico que almacena los datos del montículo
 

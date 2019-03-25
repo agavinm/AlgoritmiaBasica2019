@@ -64,11 +64,11 @@ Heap insertarFrecuencias(unsigned char frecuencia[N]) {
 
 int main() {
 
-    unsigned char frecuencia[N] = {0};
+    /*unsigned char frecuencia[N] = {0};
     contar("prueba1.txt", frecuencia);
-    Heap h = insertarFrecuencias(frecuencia);
+    Heap h = insertarFrecuencias(frecuencia);*/
 
-    /*
+
     Heap h;
     Arbol a1(10, 1), a2(20, 2), a3(30, 3), a4(40, 4), a5(50, 5), a6(60, 6), 
           a7(70, 7), a8(80, 8), a9(90, 9), a0(0, 0);
@@ -78,7 +78,7 @@ int main() {
     h.insertar(a1); h.insertar(a2); h.insertar(a3); h.insertar(a4); 
     h.insertar(a5); h.insertar(a6); h.insertar(a7);
     h.insertar(a8); h.insertar(a9); h.insertar(a0);
-    // Insertar ok, todos son montículos de máximos
+    // Insertar ok, todos son montículos de mínimos
 
     // Primero ok, devuelve el primero y reajusta el montículo
     Arbol *aux = h.primero();
@@ -90,5 +90,5 @@ int main() {
 
     return 0;
 
-    */
+
 }
