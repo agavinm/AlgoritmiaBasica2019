@@ -8,7 +8,8 @@
 
 #include <iostream>
 #include <fstream>
-#include "heap.hpp"
+//#include "heap.hpp"
+#include "huffman.hpp"
 
 using namespace std;
 
@@ -41,7 +42,7 @@ void contar(const char* nombreFichero, unsigned char (&frecuencia)[N]) {
  * Devuelve un heap en la que se han insertado los datos del vector 
  * "frecuencia".
  */
-Heap insertarFrecuencias(unsigned char frecuencia[N]) {
+/*Heap insertarFrecuencias(unsigned char frecuencia[N]) {
     Heap h;
 
     // Por cada elemento del vector, se crea un arbol con la frecuencia del 
@@ -60,7 +61,7 @@ Heap insertarFrecuencias(unsigned char frecuencia[N]) {
     }
 
     return h;
-}
+}*/
 
 int main() {
 
@@ -69,7 +70,7 @@ int main() {
     Heap h = insertarFrecuencias(frecuencia);*/
 
 
-    Heap h;
+    /*Heap h;
     Arbol a1(10, 1), a2(20, 2), a3(30, 3), a4(40, 4), a5(50, 5), a6(60, 6), 
           a7(70, 7), a8(80, 8), a9(90, 9), a0(0, 0);
     Arbol a12(a1, a2), a56(a5, a6), a1256(a12, a56), a12560(a1256, a0);
@@ -86,9 +87,20 @@ int main() {
     while (aux != nullptr) {
         cout << (int)aux->frecuencia() << endl;
         aux = h.primero();
-    }
+    }*/
+
+    vector<Arbol*> v;
+
+    Arbol f(5, 'f'), e(9, 'e'), c(12, 'c'), b(13, 'b'), d(16, 'd'), a(45, 'a');
+    bool hoja = f.esHoja();
+    v.push_back(&e);
+    v.push_back(&f);
+    v.push_back(&a);
+    v.push_back(&c);
+    v.push_back(&d);
+    v.push_back(&b);
+
+    Arbol *res = huffman(v);
 
     return 0;
-
-
 }
