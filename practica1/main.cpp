@@ -42,26 +42,19 @@ void contar(const char* nombreFichero, unsigned char (&frecuencia)[N]) {
  * Devuelve un heap en la que se han insertado los datos del vector 
  * "frecuencia".
  */
-/*Heap insertarFrecuencias(unsigned char frecuencia[N]) {
-    Heap h;
+vector<Arbol*> insertarFrecuencias(unsigned char frecuencia[N]) {
 
+    vector<Arbol*> v;
     // Por cada elemento del vector, se crea un arbol con la frecuencia del 
     // elemento y el elemento en si, y lo inserta al heap "h"..
     for (int i=0; i<=N; i++) {
         cout << "Insertando frecuencia del caracter " << (unsigned char) i
              << ": " << (int) frecuencia[i] << endl;
-        Arbol *a = new Arbol(frecuencia[i], i);
-        h.insertar(*a);
+        Arbol a(frecuencia[i], i);
+        v.push_back(&a);
     }
-
-    for (int j=0; j<=N; j++) {
-        Arbol *b = h.primero();
-        cout << "Caracter : " << (*b).obtenerByte() 
-             << " aparece con una frecuencia de: " << (int ) (*b).frecuencia() << endl;
-    }
-
-    return h;
-}*/
+    return v;
+}
 
 int main() {
 
@@ -87,7 +80,7 @@ int main() {
     while (aux != nullptr) {
         cout << (int)aux->frecuencia() << endl;
         aux = h.primero();
-    }*/
+    }
 
     vector<Arbol*> v;
 
@@ -99,8 +92,11 @@ int main() {
     v.push_back(&c);
     v.push_back(&d);
     v.push_back(&b);
-
+    */
+    unsigned char frecuencia[N] = {0};
+    contar("prueba1.txt", frecuencia);
+    vector<Arbol*> v = insertarFrecuencias(frecuencia);
     Arbol *res = huffman(v);
-
+    cout << "FIN" << endl;
     return 0;
 }

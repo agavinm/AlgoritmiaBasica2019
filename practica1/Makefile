@@ -21,16 +21,17 @@ EJEC = huf
 MAIN = main
 MON = heap
 ARB = arbol
+HUF = huffman
 
 all: ${EJEC}
 #---------------------------------------------------------
 # "linkar"
-${EJEC}: ${MAIN}.o ${MON}.o ${ARB}.o
-	${CC} ${MAIN}.o ${MON}.o ${ARB}.o -o ${EJEC} ${CPPFLAGS}
+${EJEC}: ${MAIN}.o ${MON}.o ${ARB}.o ${HUF}.o
+	${CC} ${MAIN}.o ${MON}.o ${ARB}.o ${HUF}.o -o ${EJEC} ${CPPFLAGS}
 
 #---------------------------------------------------------
 # compilar
-${MAIN}.o: ${MAIN}.cpp ${MON}.hpp ${MON}.cpp ${ARB}.hpp ${ARB}.cpp
+${MAIN}.o: ${MAIN}.cpp ${MON}.hpp ${MON}.cpp ${ARB}.hpp ${ARB}.cpp ${HUF}.hpp ${HUF}.cpp 
 	${CC} -c ${MAIN}.cpp ${CPPFLAGS}
 
 ${MON}.o: ${MON}.hpp ${MON}.cpp
@@ -39,7 +40,10 @@ ${MON}.o: ${MON}.hpp ${MON}.cpp
 ${ARB}.o: ${ARB}.hpp ${ARB}.cpp
 	${CC} -c ${ARB}.cpp ${CPPFLAGS}
 
+${HUF}.o: ${HUF}.hpp ${HUF}.cpp
+	${CC} -c ${HUF}.cpp ${CPPFLAGS}
+
 #---------------------------------------------------------
 # Cuidado con lo que se pone aquí, que se borra sin preguntar
 clean:
-	$(RM) ${MON}.o ${ARB}.o ${MAIN}.o ${EJEC}
+	$(RM) ${MON}.o ${ARB}.o ${HUF}.o ${MAIN}.o ${EJEC}
