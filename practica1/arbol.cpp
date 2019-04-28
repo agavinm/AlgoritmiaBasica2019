@@ -19,3 +19,11 @@ unsigned char Arbol::obtenerByte() const {
 bool Arbol::esHoja() const {
     return this->hoja;
 }
+
+Arbol* Arbol::izdo() {
+    return this->hijoI;
+}
+
+Arbol* Arbol::dcho() {
+    return this->hijoD;
+}

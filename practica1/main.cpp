@@ -35,8 +35,9 @@ void contar(const char* nombreFichero, unsigned char (&frecuencia)[N]) {
         frecuencia[(int) caracter]++;
         cout << "Encontrado caracter: " << caracter << endl;
     }
-
 }
+
+
 
 /*
  * Devuelve un heap en la que se han insertado los datos del vector 
@@ -50,10 +51,77 @@ vector<Arbol*> insertarFrecuencias(unsigned char frecuencia[N]) {
     for (int i=0; i<=N; i++) {
         cout << "Insertando frecuencia del caracter " << (unsigned char) i
              << ": " << (int) frecuencia[i] << endl;
-        Arbol a(frecuencia[i], i);
-        v.push_back(&a);
+        Arbol* a = new Arbol(frecuencia[i], i);
+        v.push_back(a);
     }
     return v;
+}
+
+void crearTablaCodigos(Arbol *res, string (&codigos)[N], string codigo) {
+    if (res->esHoja()) {
+        codigos[res->obtenerByte()] = codigo;
+    } else {
+        Arbol *izdo = res->izdo();
+        if (izdo != nullptr) {
+            crearTablaCodigos(res->izdo(), codigos, codigo + "0");
+        }
+        Arbol *dcho = res->dcho();
+        if (dcho != nullptr) {
+            crearTablaCodigos(res->dcho(), codigos, codigo + "1");
+        }
+    }
+}
+
+void escribirTablaCodigos(string nombreFichero, string (codigos)[N]) {
+    ofstream tablaCodigos;
+    tablaCodigos.open(nombreFichero);
+    cout << codigos[N] << endl;
+
+
+    for (int i=0; i<= N; i++) {
+        tablaCodigos << codigos[i] << endl;
+    }
+    tablaCodigos.close();
+}
+
+void recuperarTablaCodigos(string nombreFichero, string (&codigos)[N]) {
+    ifstream tablaCodigos(nombreFichero);
+    char caracter;
+    string codigo;
+    for (int i=0; i<=N; i++) {
+        tablaCodigos >> codigo;
+        codigos[i] = codigo;
+    }
+}
+
+// Simplemente para debuggear!
+void mostrarTablaCodigos(string (codigos)[N]) {
+    for (int i=0; i<=N; i++) {
+        cout << "Codigo del caracter " << (char) i << ": " << codigos[i] << endl;
+    }
+}
+
+void codificarTexto(string (codigos)[N], string ficheroEntrada, string ficheroSalida) {
+    unsigned char caracter;
+    ifstream ficheroOriginal(ficheroEntrada);
+    ofstream ficheroCodificado;
+    ficheroCodificado.open(ficheroSalida, ios::binary);
+    while (ficheroOriginal.good()) {
+        caracter = ficheroOriginal.get();
+        // ESTAN ALMACENADOS CARACTERES, POR LO QUE SE ESCRIBEN CARACTERES Y
+        // OCUPA MUCHO ESPACIO. AVERIGUAR COMO HACERLO CON BINARIO.
+        ficheroCodificado.write(codigos[caracter].c_str(), codigos[caracter].size());
+    }
+}
+
+void decodificarTexto(string (codigos)[N], string ficheroEntrada, string ficheroSalida) {
+    unsigned char caracter;
+    ifstream ficheroCodificado(ficheroEntrada);
+    ofstream ficheroOriginal;
+    ficheroOriginal.open(ficheroSalida, ios::binary);
+    while (ficheroCodificado.good()) {
+        // Obtener codigos y traducirlos.
+    }
 }
 
 int main() {
@@ -81,7 +149,7 @@ int main() {
         cout << (int)aux->frecuencia() << endl;
         aux = h.primero();
     }
-
+    
     vector<Arbol*> v;
 
     Arbol f(5, 'f'), e(9, 'e'), c(12, 'c'), b(13, 'b'), d(16, 'd'), a(45, 'a');
@@ -97,6 +165,14 @@ int main() {
     contar("prueba1.txt", frecuencia);
     vector<Arbol*> v = insertarFrecuencias(frecuencia);
     Arbol *res = huffman(v);
-    cout << "FIN" << endl;
+    string codigos[N];
+    crearTablaCodigos(res, codigos, "");
+    mostrarTablaCodigos(codigos);
+    escribirTablaCodigos("tablaCodigos.txt", codigos);
+    codificarTexto(codigos, "prueba1.txt", "prueba1_codificado.txt");
+    string codigosRecuperados[N];
+    recuperarTablaCodigos("tablaCodigos.txt", codigosRecuperados);
+    mostrarTablaCodigos(codigosRecuperados);
+
     return 0;
 }

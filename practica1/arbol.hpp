@@ -25,6 +25,10 @@ public:
     Arbol(const unsigned char frecuencia, const unsigned char byte) : // Constructor del árbol hoja
             frec(frecuencia), hoja(true), byte(byte), hijoI(nullptr), hijoD(nullptr) {}
 
+    Arbol* izdo();
+
+    Arbol* dcho();
+
     unsigned char frecuencia() const;
 
     unsigned char obtenerByte() const;
