@@ -2,7 +2,7 @@
 # File:   Makefile
 # Author: Andrés Gavín Murillo 716358
 # Author: Andrew Mackay 737069
-# Date:   Marzo 2019
+# Date:   Mayo 2019
 # Coms:   Algoritmia básica - Práctica 1
 #         Ejecutar "make" para compilar (o "make -f Makefile")
 #         Ejecutar "make clean" para limpiar (borrar lo que genere)
