@@ -4,3 +4,5 @@
 # Carpeta de configuracion del editor Visual Studio Code
 .vscode
 
+.directory
+.gitignore

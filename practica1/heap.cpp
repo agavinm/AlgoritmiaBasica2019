@@ -2,12 +2,16 @@
 // File:   heap.cpp
 // Author: Andrés Gavín Murillo 716358
 // Author: Andrew Mackay 737069
-// Date:   Marzo 2019
+// Date:   Mayo 2019
 // Coms:   Algoritmia básica - Práctica 1
 //*****************************************************************
 
+
+#include "arbol.hpp"
+#include <vector>
 #include "heap.hpp"
 
+/* Inserta el elemento ar al Heap */
 void Heap::insertar(Arbol &ar) {
     this->v.push_back(&ar); // Nuevo nodo hoja más a la derecha
     unsigned long pos = this->v.size() - 1, posPadre = (pos+1) / 2 - 1;
@@ -27,6 +31,7 @@ void Heap::insertar(Arbol &ar) {
     }
 }
 
+/* Elimina del Heap el elemento en la cima y lo devuelve */
 Arbol* Heap::primero() {
     if (!this->v.empty()) {
         Arbol *cima = this->v[0]; // Elemento a devolver
