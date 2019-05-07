@@ -14,7 +14,7 @@ RM = /bin/rm -f  # para limpiar
 CC = g++         # compilador
 #---------------------------------------------------------
 # compilación y enlazado ("linkado")
-CPPFLAGS=-I. -O2 -std=c++11 -g -fmax-errors=1 # opciones compilación
+CPPFLAGS=-I. -O2 -std=c++11 -fmax-errors=1 # opciones compilación
 #---------------------------------------------------------
 # vars
 EJEC = huf
