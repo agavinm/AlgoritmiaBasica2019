@@ -19,7 +19,7 @@ CPPFLAGS=-I. -O2 -std=c++11 -fmax-errors=1 # opciones compilación
 # vars
 MAIN = main
 EJEC = main
-ARB = arbol
+ARB = tren
 
 all: ${EJEC}
 #---------------------------------------------------------
