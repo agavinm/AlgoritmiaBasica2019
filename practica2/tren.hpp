@@ -9,8 +9,8 @@
 #ifndef TREN_HPP
 #define TREN_HPP
 
-#include <queue>
-#include <tuple>
+#include "pedido.hpp"
+#include "heap.hpp"
 
 using namespace std;
 
@@ -18,16 +18,16 @@ class Tren {
 
 private:
 
-    queue<tuple<int, int, int>> pedidos;
+    Heap<Pedido*> pedidos;
     int n, m, p;
 
 public:
 
     void iniciarTren (int n, int m, int p);
 
-    void insertarPedido (tuple<int, int, int> pedido);
-
-    string obtenerPedidos();
+    void insertarPedido (Pedido* pedido);
+    
+    void mostrar();
 };
 
 #endif

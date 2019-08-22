@@ -6,6 +6,9 @@ class Pedido {
         int n, m, p;
     public:
         Pedido(int n, int m, int p);
+        int obtenerCapacidad();
+        int obtenerParadas();
+        int obtenerPedidos();
 };
 
 #endif

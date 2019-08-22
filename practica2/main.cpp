@@ -9,9 +9,14 @@
 #include <fstream>
 #include <iostream>
 #include "tren.hpp"
+#include "heap.hpp"
 #include <queue>
 
 using namespace std;
+
+void resolverTren(Tren *tren) {
+    tren->mostrar();
+}
 
 int main(int argc, char *argv[]) {
 
@@ -19,7 +24,7 @@ int main(int argc, char *argv[]) {
         cout << "Sintaxis del programa: ./main fichero_entrada fichero_salida" << endl;
         return 1;
     }
-    queue<Tren*> *trenes = new queue<Tren*>;
+    Heap<Tren> *trenes = new Heap<Tren>;
     ifstream fin (argv[1]);
     int n, m, p, entrada, salida, pasajeros, i=0;
     fin >> n >> m >> p;
@@ -28,11 +33,18 @@ int main(int argc, char *argv[]) {
         tren->iniciarTren(n, m, p);
         for (i=0; i<p; i++) {
             fin >> salida >> entrada >> pasajeros;            
-            tren->insertarPedido(make_tuple(salida, entrada, pasajeros));
+            tren->insertarPedido(new Pedido(salida, entrada, pasajeros));
         }
-        trenes->push(tren);
+        trenes->insertar(tren);
+        tren = new Tren();
         fin >> n >> m >> p;
     }
-
+    resolverTren(trenes->primero());
+/**
+    while (!trenes->empty()) {
+        resolverTren(trenes->front());
+        trenes->pop();
+    }
+*/
     return 0;
 }

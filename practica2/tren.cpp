@@ -18,16 +18,19 @@ void Tren::iniciarTren (int n, int m, int p) {
     this->p = p;
 }
 
-void Tren::insertarPedido (tuple<int, int, int> pedido) {
-    this->pedidos.push(pedido);
+void Tren::insertarPedido (Pedido* pedido) {
+    this->pedidos.insertar(&pedido);
 }
 
-string Tren::obtenerPedidos() {
-    string tren = "";
-    while(!this->pedidos.empty()) {
-        tuple<int, int, int> pedido = this->pedidos.front();
-        this->pedidos.pop();
-        tren = tren + to_string(get<0>(pedido)) + ' ' + to_string(get<1>(pedido)) + ' ' + to_string(get<2>(pedido)) + '\n';
+void Tren::mostrar() {
+    cout << "Capacidad: " << this->n << endl;
+    cout << "Estaciones: " << this->m << endl;
+    cout << "Pedidos: " << this->p << endl;
+    int i = 1;
+    Heap<Pedido*> aux = this->pedidos;
+    Pedido* pedido = *aux.primero();
+    while(pedido != nullptr) {
+        cout << i << "- " << pedido->obtenerCapacidad() << " " << pedido->obtenerParadas() << " " << pedido->obtenerPedidos() << endl;
+        i++;
     }
-    return tren;
 }

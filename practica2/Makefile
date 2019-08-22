@@ -19,23 +19,27 @@ CPPFLAGS=-I. -O2 -std=c++11 -fmax-errors=1 # opciones compilación
 # vars
 MAIN = main
 EJEC = main
-ARB = tren
+TREN = tren
+HEAP = heap
 
 all: ${EJEC}
 #---------------------------------------------------------
 # "linkar"
-${EJEC}: ${MAIN}.o ${ARB}.o 
-	${CC} ${MAIN}.o ${ARB}.o -o ${EJEC} ${CPPFLAGS}
+${EJEC}: ${MAIN}.o ${HEAP}.o ${TREN}.o 
+	${CC} ${MAIN}.o ${HEAP}.o ${TREN}.o  -o ${EJEC} ${CPPFLAGS}
 
 #---------------------------------------------------------
 # compilar
 ${MAIN}.o: ${MAIN}.cpp 
 	${CC} -c ${MAIN}.cpp ${CPPFLAGS}
 
-${ARB}.o: ${ARB}.hpp ${ARB}.cpp
-	${CC} -c ${ARB}.cpp ${CPPFLAGS}
+${TREN}.o: ${TREN}.hpp ${TREN}.cpp
+	${CC} -c ${TREN}.cpp ${CPPFLAGS}
+
+${HEAP}.o: ${HEAP}.hpp ${HEAP}.cpp
+	${CC} -c ${HEAP}.cpp ${CPPFLAGS}
 
 #---------------------------------------------------------
 # Cuidado con lo que se pone aquí, que se borra sin preguntar
 clean:
-	$(RM) ${MAIN}.o ${ARB}.o ${EJEC}
+	$(RM) ${MAIN}.o ${TREN}.o ${HEAP}.o ${EJEC}

@@ -11,6 +11,7 @@
 
 #include <fstream>
 #include <queue>
+#include "pedido.hpp"
 
 
 class Arbol {
@@ -18,6 +19,7 @@ class Arbol {
 private:
 
     Arbol *hijoI, *hijoD;
+    Pedido p;
 
 public:
     Arbol(Arbol &hijoIzquierdo, Arbol &hijoDerecho) : // Constructor del árbol con hijos
