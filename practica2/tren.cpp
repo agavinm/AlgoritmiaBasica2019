@@ -18,8 +18,8 @@ void Tren::iniciarTren (int n, int m, int p) {
     this->p = p;
 }
 
-void Tren::insertarPedido (Pedido* pedido) {
-    this->pedidos.insertar(&pedido);
+void Tren::insertarPedido(Pedido* pedido) {
+    this->pedidos.insertar(pedido);
 }
 
 void Tren::mostrar() {
@@ -27,10 +27,14 @@ void Tren::mostrar() {
     cout << "Estaciones: " << this->m << endl;
     cout << "Pedidos: " << this->p << endl;
     int i = 1;
-    Heap<Pedido*> aux = this->pedidos;
-    Pedido* pedido = *aux.primero();
+    Heap<Pedido> aux = this->pedidos;
+    Pedido* pedido = aux.primero();
     while(pedido != nullptr) {
         cout << i << "- " << pedido->obtenerCapacidad() << " " << pedido->obtenerParadas() << " " << pedido->obtenerPedidos() << endl;
         i++;
     }
+}
+
+int Tren::beneficio() {
+    return 1;
 }

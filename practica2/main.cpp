@@ -10,6 +10,7 @@
 #include <iostream>
 #include "tren.hpp"
 #include "heap.hpp"
+#include "pedido.hpp"
 #include <queue>
 
 using namespace std;

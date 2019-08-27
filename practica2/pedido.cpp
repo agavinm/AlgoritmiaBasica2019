@@ -17,3 +17,7 @@ int Pedido::obtenerParadas() {
 int Pedido::obtenerPedidos() {
     return this->p;
 }
+
+int Pedido::beneficio() {
+    return 1;
+}

@@ -20,13 +20,13 @@ CPPFLAGS=-I. -O2 -std=c++11 -fmax-errors=1 # opciones compilación
 MAIN = main
 EJEC = main
 TREN = tren
-HEAP = heap
+PEDIDO = pedido
 
 all: ${EJEC}
 #---------------------------------------------------------
 # "linkar"
-${EJEC}: ${MAIN}.o ${HEAP}.o ${TREN}.o 
-	${CC} ${MAIN}.o ${HEAP}.o ${TREN}.o  -o ${EJEC} ${CPPFLAGS}
+${EJEC}: ${MAIN}.o  ${TREN}.o ${PEDIDO}.o
+	${CC} ${MAIN}.o ${TREN}.o  ${PEDIDO}.o -o ${EJEC} ${CPPFLAGS}
 
 #---------------------------------------------------------
 # compilar
@@ -36,10 +36,10 @@ ${MAIN}.o: ${MAIN}.cpp
 ${TREN}.o: ${TREN}.hpp ${TREN}.cpp
 	${CC} -c ${TREN}.cpp ${CPPFLAGS}
 
-${HEAP}.o: ${HEAP}.hpp ${HEAP}.cpp
-	${CC} -c ${HEAP}.cpp ${CPPFLAGS}
+${PEDIDO}.o: ${PEDIDO}.hpp ${PEDIDO}.cpp
+	${CC} -c ${PEDIDO}.cpp ${CPPFLAGS}
 
 #---------------------------------------------------------
 # Cuidado con lo que se pone aquí, que se borra sin preguntar
 clean:
-	$(RM) ${MAIN}.o ${TREN}.o ${HEAP}.o ${EJEC}
+	$(RM) ${MAIN}.o ${TREN}.o ${PEDIDO}.o ${EJEC}

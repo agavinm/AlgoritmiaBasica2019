@@ -18,7 +18,7 @@ class Tren {
 
 private:
 
-    Heap<Pedido*> pedidos;
+    Heap<Pedido> pedidos;
     int n, m, p;
 
 public:
@@ -28,6 +28,8 @@ public:
     void insertarPedido (Pedido* pedido);
     
     void mostrar();
+
+    int beneficio();
 };
 
 #endif

@@ -9,6 +9,7 @@ class Pedido {
         int obtenerCapacidad();
         int obtenerParadas();
         int obtenerPedidos();
+        int beneficio();
 };
 
 #endif
