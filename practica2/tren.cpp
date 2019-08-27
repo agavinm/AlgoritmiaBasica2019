@@ -31,6 +31,7 @@ void Tren::mostrar() {
     Pedido* pedido = aux.primero();
     while(pedido != nullptr) {
         cout << i << "- " << pedido->obtenerCapacidad() << " " << pedido->obtenerParadas() << " " << pedido->obtenerPedidos() << endl;
+        pedido = aux.primero();
         i++;
     }
 }
