@@ -21,12 +21,13 @@ MAIN = main
 EJEC = main
 TREN = tren
 PEDIDO = pedido
+ARBOL = arbol
 
 all: ${EJEC}
 #---------------------------------------------------------
 # "linkar"
-${EJEC}: ${MAIN}.o  ${TREN}.o ${PEDIDO}.o
-	${CC} ${MAIN}.o ${TREN}.o  ${PEDIDO}.o -o ${EJEC} ${CPPFLAGS}
+${EJEC}: ${MAIN}.o  ${TREN}.o ${PEDIDO}.o ${ARBOL}.o
+	${CC} ${MAIN}.o ${TREN}.o  ${PEDIDO}.o ${ARBOL}.o -o ${EJEC} ${CPPFLAGS}
 
 #---------------------------------------------------------
 # compilar
@@ -39,7 +40,10 @@ ${TREN}.o: ${TREN}.hpp ${TREN}.cpp
 ${PEDIDO}.o: ${PEDIDO}.hpp ${PEDIDO}.cpp
 	${CC} -c ${PEDIDO}.cpp ${CPPFLAGS}
 
+${ARBOL}.o: ${ARBOL}.hpp ${ARBOL}.cpp
+	${CC} -c ${ARBOL}.cpp ${CPPFLAGS}
+
 #---------------------------------------------------------
 # Cuidado con lo que se pone aquí, que se borra sin preguntar
 clean:
-	$(RM) ${MAIN}.o ${TREN}.o ${PEDIDO}.o ${EJEC}
+	$(RM) ${MAIN}.o ${TREN}.o ${PEDIDO}.o ${ARBOL}.o ${EJEC}

@@ -6,8 +6,8 @@
 // Coms:   Algoritmia básica - Práctica 2
 //*****************************************************************
 
-#ifndef PRACTICA1_ARBOL_HPP
-#define PRACTICA1_ARBOL_HPP
+#ifndef ARBOL_HPP
+#define ARBOL_HPP
 
 #include <fstream>
 #include <queue>
@@ -19,9 +19,15 @@ class Arbol {
 private:
 
     Arbol *hijoI, *hijoD;
-    Pedido p;
+    Pedido* pedido;
+    bool coger;
 
 public:
+
+    Arbol(Pedido* pedido) : pedido(pedido), coger(true) {}
+
+    Arbol(Pedido* pedido, bool coger) : pedido(pedido), coger(coger) {}
+
     Arbol(Arbol &hijoIzquierdo, Arbol &hijoDerecho) : // Constructor del árbol con hijos
             hijoI(&hijoIzquierdo),
             hijoD(&hijoDerecho) {}
@@ -31,7 +37,11 @@ public:
 
     /* Devuelve el hijo derecho. */
     Arbol* dcho() const;
+
+    void establecerDcho(Pedido* pedido, bool coger);
     
+    void establecerIzdo(Pedido* pedido, bool coger) ;
+
 };
 
 

@@ -20,3 +20,11 @@ Arbol* Arbol::dcho() const {
     return this->hijoD;
 }
 
+void Arbol::establecerDcho(Pedido* pedido, bool coger) {
+    this->hijoD = new Arbol(pedido, coger);
+}
+
+void Arbol::establecerIzdo(Pedido* pedido, bool coger) {
+    this->hijoI = new Arbol(pedido, coger);
+}
+

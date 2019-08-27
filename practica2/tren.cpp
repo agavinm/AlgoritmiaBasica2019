@@ -39,3 +39,11 @@ void Tren::mostrar() {
 int Tren::beneficio() {
     return 1;
 }
+
+Pedido* Tren::primerPedido() {
+    return this->pedidos.primero();
+}
+
+bool Tren::vacio() {
+    return this->pedidos.vacio();
+}

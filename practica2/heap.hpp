@@ -83,6 +83,10 @@ public:
             return nullptr;
         }
     }
+
+    bool vacio() {
+        return this->v.empty();
+    }
 };
 
 

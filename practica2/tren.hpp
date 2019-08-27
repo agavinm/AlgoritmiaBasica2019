@@ -30,6 +30,10 @@ public:
     void mostrar();
 
     int beneficio();
+
+    Pedido* primerPedido();
+
+    bool vacio();
 };
 
 #endif

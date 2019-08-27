@@ -2,7 +2,7 @@
 // File:   main.cpp
 // Author: Andrés Gavín Murillo 716358
 // Author: Andrew Mackay 737069
-// Date:   Mayo 2019
+// Date:   Agosto 2019
 // Coms:   Algoritmia básica - Práctica 2
 //******************************************************************************
 
@@ -11,12 +11,21 @@
 #include "tren.hpp"
 #include "heap.hpp"
 #include "pedido.hpp"
+#include "arbol.hpp"
 #include <queue>
 
 using namespace std;
 
 void resolverTren(Tren *tren) {
     tren->mostrar();
+    Arbol* arbol = new Arbol(tren->primerPedido());
+    Pedido* aux;
+    while (!tren->vacio()) {
+        aux = tren->primerPedido();
+        arbol->establecerDcho(aux, false);
+        arbol->establecerIzdo(aux, true);
+        arbol = arbol->izdo();
+    }
 }
 
 int main(int argc, char *argv[]) {
