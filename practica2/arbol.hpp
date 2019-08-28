@@ -20,17 +20,23 @@ private:
 
     Arbol *hijoI, *hijoD;
     Pedido* pedido;
+    int beneficioActual;
+    int pesoActual;
+    int capacidad;
     bool coger;
+    double podaActual;
+    double estimacionActual;
 
 public:
 
-    Arbol(Pedido* pedido) : pedido(pedido), coger(true) {}
+    /* Raiz */
+    Arbol(int capacidad, Pedido* primerPedido) : capacidad(capacidad), pedido(primerPedido) {
+        this->estimacionActual = -this->cota(capacidad, 0, primerPedido);
+        this->podaActual = -this->poda(0, 0, primerPedido);
 
-    Arbol(Pedido* pedido, bool coger) : pedido(pedido), coger(coger) {}
+    }
 
-    Arbol(Arbol &hijoIzquierdo, Arbol &hijoDerecho) : // Constructor del árbol con hijos
-            hijoI(&hijoIzquierdo),
-            hijoD(&hijoDerecho) {}
+    Arbol(int capacidad, Pedido* pedido, double podaActual, double estimacionActual, bool coger, int beneficioActual) : capacidad(capacidad), pedido(pedido), podaActual(podaActual), estimacionActual(estimacionActual), coger(coger), beneficioActual(beneficioActual) {}
 
     /* Devuelve el hijo izquierdo. */
     Arbol* izdo() const;
@@ -38,9 +44,10 @@ public:
     /* Devuelve el hijo derecho. */
     Arbol* dcho() const;
 
-    void establecerDcho(Pedido* pedido, bool coger);
-    
-    void establecerIzdo(Pedido* pedido, bool coger) ;
+    void expandir(Pedido* siguiente);
+
+    double cota(int capacidadRestante, double beneficioActual, Pedido* pedido);
+    double poda(int pesoActual, double podaFacil, Pedido* pedido);
 
 };
 

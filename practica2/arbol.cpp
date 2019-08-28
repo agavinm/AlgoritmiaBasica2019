@@ -20,11 +20,35 @@ Arbol* Arbol::dcho() const {
     return this->hijoD;
 }
 
-void Arbol::establecerDcho(Pedido* pedido, bool coger) {
-    this->hijoD = new Arbol(pedido, coger);
+void Arbol::expandir(Pedido* pedido) {
+    int nuevaEstimacion = -this->cota(this->capacidad-pesoActual, this->beneficioActual, pedido->obtenerSiguiente());
+    int nuevaPoda = this->poda(this->pesoActual, -this->beneficioActual, pedido->obtenerSiguiente());
+
+
+} 
+
+double Arbol::cota(int capacidadRestante, double beneficioActual, Pedido* pedido) {
+    if (pedido == nullptr || capacidadRestante == 0) {
+        return beneficioActual;
+    } else {
+        if (pedido->obtenerPasajeros() > capacidadRestante) {
+            return beneficioActual + (capacidadRestante/pedido->obtenerPasajeros()*pedido->beneficio());
+        } else {
+            return this->cota(this->capacidad-pedido->obtenerPasajeros(), beneficioActual + pedido->beneficio(), pedido->obtenerSiguiente());
+        }
+    }
 }
 
-void Arbol::establecerIzdo(Pedido* pedido, bool coger) {
-    this->hijoI = new Arbol(pedido, coger);
+double Arbol::poda(int pesoActual, double podaFacil, Pedido* pedido) {
+    int peso = pesoActual;
+    double poda = podaFacil; 
+    while (pedido != nullptr) {
+        if (peso + pedido->obtenerPasajeros() <= this->capacidad) {
+            peso += pedido->obtenerPasajeros();
+            poda -= pedido->beneficio();
+        }
+    }
+    return poda;
 }
+
 

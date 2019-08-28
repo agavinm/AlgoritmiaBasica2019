@@ -3,13 +3,16 @@
 
 class Pedido {
     private:
-        int n, m, p;
+        int estacionSalida, estacionLlegada, pasajeros;
+        Pedido* siguiente;
     public:
-        Pedido(int n, int m, int p);
-        int obtenerCapacidad();
-        int obtenerParadas();
-        int obtenerPedidos();
+        Pedido(int estacionSalida, int estacionLlegada, int pasajeros);
+        int obtenerEstacionSalida();
+        int obtenerEstacionLlegada();
+        int obtenerPasajeros();
         int beneficio();
+        void anyadirSiguiente(Pedido* pedido);
+        Pedido* obtenerSiguiente();
 };
 
 #endif

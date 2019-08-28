@@ -18,8 +18,21 @@ void Tren::iniciarTren (int n, int m, int p) {
     this->p = p;
 }
 
+int Tren::obtenerCapacidad() {
+    return this->n;
+}
+
+int Tren::obtenerEstaciones() {
+    return this->m;
+}
+
+int Tren::obtenerPedidos() {
+    return this->p;
+}
+
 void Tren::insertarPedido(Pedido* pedido) {
-    this->pedidos.insertar(pedido);
+    pedido->anyadirSiguiente(this->primerPedido);
+    this->primerPedido = pedido;
 }
 
 void Tren::mostrar() {
@@ -27,11 +40,10 @@ void Tren::mostrar() {
     cout << "Estaciones: " << this->m << endl;
     cout << "Pedidos: " << this->p << endl;
     int i = 1;
-    Heap<Pedido> aux = this->pedidos;
-    Pedido* pedido = aux.primero();
+    Pedido* pedido = this->primerPedido;
     while(pedido != nullptr) {
-        cout << i << "- " << pedido->obtenerCapacidad() << " " << pedido->obtenerParadas() << " " << pedido->obtenerPedidos() << endl;
-        pedido = aux.primero();
+        cout << i << "- " << pedido->obtenerEstacionSalida() << " " << pedido->obtenerEstacionLlegada() << " " << pedido->obtenerPasajeros() << endl;
+        pedido = pedido->obtenerSiguiente();
         i++;
     }
 }
@@ -40,10 +52,10 @@ int Tren::beneficio() {
     return 1;
 }
 
-Pedido* Tren::primerPedido() {
-    return this->pedidos.primero();
+Pedido* Tren::obtenerPrimerPedido() {
+    return this->primerPedido;
 }
 
 bool Tren::vacio() {
-    return this->pedidos.vacio();
+    return this->primerPedido == nullptr;
 }

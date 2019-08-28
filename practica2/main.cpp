@@ -18,13 +18,10 @@ using namespace std;
 
 void resolverTren(Tren *tren) {
     tren->mostrar();
-    Arbol* arbol = new Arbol(tren->primerPedido());
+    Arbol* arbol = new Arbol(tren->obtenerCapacidad(), tren->obtenerPrimerPedido());
     Pedido* aux;
     while (!tren->vacio()) {
-        aux = tren->primerPedido();
-        arbol->establecerDcho(aux, false);
-        arbol->establecerIzdo(aux, true);
-        arbol = arbol->izdo();
+        
     }
 }
 

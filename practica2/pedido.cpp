@@ -1,23 +1,31 @@
 #include "pedido.hpp"
 
-Pedido::Pedido(int n, int m, int p) {
-    this->n = n;
-    this->m = m;
-    this->p = p;
+Pedido::Pedido(int estacionSalida, int estacionLlegada, int pasajeros) {
+    this->estacionSalida = estacionSalida;
+    this->estacionLlegada = estacionLlegada;
+    this->pasajeros = pasajeros;
 }
 
-int Pedido::obtenerCapacidad() {
-    return this->n;
+int Pedido::obtenerEstacionSalida() {
+    return this->estacionSalida;
 }
 
-int Pedido::obtenerParadas() {
-    return this->m;
+int Pedido::obtenerEstacionLlegada() {
+    return this->estacionLlegada;
 }
 
-int Pedido::obtenerPedidos() {
-    return this->p;
+int Pedido::obtenerPasajeros() {
+    return this->pasajeros;
 }
 
 int Pedido::beneficio() {
-    return 1;
+    return this->estacionSalida-this->estacionLlegada*this->pasajeros;
+}
+
+void Pedido::anyadirSiguiente(Pedido* pedido) {
+    this->siguiente = pedido;
+}
+
+Pedido* Pedido::obtenerSiguiente() {
+    return this->siguiente;
 }

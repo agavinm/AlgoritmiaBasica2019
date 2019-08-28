@@ -18,20 +18,26 @@ class Tren {
 
 private:
 
-    Heap<Pedido> pedidos;
+    Pedido* primerPedido;
     int n, m, p;
 
 public:
 
     void iniciarTren (int n, int m, int p);
 
-    void insertarPedido (Pedido* pedido);
+    int obtenerCapacidad();
+
+    int obtenerEstaciones();
+
+    int obtenerPedidos();
+
+    void insertarPedido(Pedido* pedido);
     
     void mostrar();
 
     int beneficio();
 
-    Pedido* primerPedido();
+    Pedido* obtenerPrimerPedido();
 
     bool vacio();
 };
