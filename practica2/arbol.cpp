@@ -20,7 +20,8 @@ Arbol* Arbol::dcho() const {
     return this->hijoD;
 }
 
-void Arbol::expandir(Pedido* pedido) {
+void Arbol::expandir() {
+    Pedido* pedido = this->pedido->obtenerSiguiente();
     int nuevaEstimacion = -this->cota(this->capacidad-pesoActual, this->beneficioActual, pedido->obtenerSiguiente());
     int nuevaPoda = this->poda(this->pesoActual, -this->beneficioActual, pedido->obtenerSiguiente());
 
@@ -49,6 +50,10 @@ double Arbol::poda(int pesoActual, double podaFacil, Pedido* pedido) {
         }
     }
     return poda;
+}
+
+bool Arbol::fin() {
+    return this->pedido == nullptr;
 }
 
 

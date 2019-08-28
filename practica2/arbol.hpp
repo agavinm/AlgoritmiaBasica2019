@@ -44,7 +44,9 @@ public:
     /* Devuelve el hijo derecho. */
     Arbol* dcho() const;
 
-    void expandir(Pedido* siguiente);
+    void expandir();
+
+    bool fin();
 
     double cota(int capacidadRestante, double beneficioActual, Pedido* pedido);
     double poda(int pesoActual, double podaFacil, Pedido* pedido);
