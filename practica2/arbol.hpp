@@ -12,6 +12,7 @@
 #include <fstream>
 #include <queue>
 #include "pedido.hpp"
+#include <iostream>
 
 
 class Arbol {
@@ -26,17 +27,14 @@ private:
     bool coger;
     double podaActual;
     double estimacionActual;
+    bool hoja;
 
 public:
 
     /* Raiz */
-    Arbol(int capacidad, Pedido* primerPedido) : capacidad(capacidad), pedido(primerPedido) {
-        this->estimacionActual = -this->cota(capacidad, 0, primerPedido);
-        this->podaActual = -this->poda(0, 0, primerPedido);
+    Arbol(int capacidad, Pedido* primerPedido);
 
-    }
-
-    Arbol(int capacidad, Pedido* pedido, double podaActual, double estimacionActual, bool coger, int beneficioActual) : capacidad(capacidad), pedido(pedido), podaActual(podaActual), estimacionActual(estimacionActual), coger(coger), beneficioActual(beneficioActual) {}
+    Arbol(int capacidad, Pedido* pedido, double nuevaPoda, double nuevaEstimacion, bool coger, double nuevoBeneficio, int nuevoPeso, bool hoja);
 
     /* Devuelve el hijo izquierdo. */
     Arbol* izdo() const;
@@ -50,6 +48,12 @@ public:
 
     double cota(int capacidadRestante, double beneficioActual, Pedido* pedido);
     double poda(int pesoActual, double podaFacil, Pedido* pedido);
+
+    bool esFactible();
+
+    double beneficio();
+
+    bool esHoja();
 
 };
 

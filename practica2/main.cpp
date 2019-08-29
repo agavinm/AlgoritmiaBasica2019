@@ -16,12 +16,31 @@
 
 using namespace std;
 
-void resolverTren(Tren *tren) {
-    tren->mostrar();
+double resolverTren(Tren *tren) {
+    Heap<Arbol>* vivos = new Heap<Arbol>();
+    Heap<Arbol>* hojas = new Heap<Arbol>();
     Arbol* arbol = new Arbol(tren->obtenerCapacidad(), tren->obtenerPrimerPedido());
-    while (!arbol->fin()) {
+    vivos->insertar(arbol);
+    while (!vivos->vacio()) {
+        arbol = vivos->primero();
         arbol->expandir();
+        if (arbol->izdo()->esFactible()) {
+            if (arbol->izdo()->esHoja()) {
+                hojas->insertar(arbol->izdo());
+            } else {
+                vivos->insertar(arbol->izdo());
+            }
+        }
+        if (arbol->dcho()->esFactible()) {
+            if (arbol->dcho()->esHoja()) {
+                hojas->insertar(arbol->dcho());
+            } else {
+                vivos->insertar(arbol->dcho());
+            }
+        }
     }
+    
+    return -hojas->primero()->beneficio();
 }
 
 int main(int argc, char *argv[]) {
@@ -45,7 +64,7 @@ int main(int argc, char *argv[]) {
         tren = new Tren();
         fin >> n >> m >> p;
     }
-    resolverTren(trenes->primero());
+    cout << resolverTren(trenes->primero()) << endl;
 /**
     while (!trenes->empty()) {
         resolverTren(trenes->front());
